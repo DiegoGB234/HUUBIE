@@ -9,10 +9,10 @@ import iconoRec from '../../../assets/iconoRecet.png'
 // llamando el icono de la empresa 
 import iconoEmpre from '../../../assets/iconoEmpr.png'
 
-function SideBar(){
+function SideBar({children=undefined}){
       const [isOpen, setIsOpen] = useState(false);
     return (
-        <div className=" fixed top-0 left-0 right-0 shadow-md py-3" style={{backgroundColor:"#1C2937"}}>
+        <div className=" relative top-0 left-0 right-0  py-3 w-full " style={{backgroundColor:"#1C2937"}}>
             {/* Boton de menu lateral  */}
             <div className="flex gap-5">
                 <button className='ml-4 ' onClick={()=>{setIsOpen(!isOpen)}} >
@@ -23,8 +23,8 @@ function SideBar(){
             {/* Contenido de menu */}
             {isOpen && (
                 <>
-                    <div className='bg-gray-600/25 min-h-screen w-full fixed top-0 left-0 right-0 backdrop-blur-sm' onClick={()=>{setIsOpen(false)}}></div>
-                        <div className=" min-h-screen w-80 fixed top-0 left-0" style={{backgroundColor:"#2B445E"}} >
+                    <div className="bg-gray-600/50 min-h-screen w-full relative top-0 left-0 right-0 backdrop-blur-sm" onClick={()=>{setIsOpen(false)}}></div>
+                        <div className=" fixed min-h-screen w-80  top-0 left-0" style={{backgroundColor:"#2B445E"}} >
                            
                                 {/* boton de cerrar */}
                                 <div className=' flex  items-center py-4 hover:opacity-80 transition-colors'style={{backgroundColor:"#1C2937"}} onClick={()=>{setIsOpen(false)}}>
@@ -55,7 +55,10 @@ function SideBar(){
                         </div>
                 </>
             )}
+
+            {/* Espacio para  contenido hijo */}
             
+           
         </div>
         
 

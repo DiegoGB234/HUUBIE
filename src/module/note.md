@@ -1,42 +1,67 @@
+import { AlignJustify } from 'lucide-react';
+import { X } from 'lucide-react';
 import { useState } from "react";
-import { Menu, X } from "lucide-react"; // npm install lucide-react
 
-export default function Sidebar() {
+// llamando los iconos de la menu lateral
+import iconoIngrediente from '../../../assets/iconoIngredie.png'
+import iconoSubrec from '../../../assets/iconoSubRecet.png'
+import iconoRec from '../../../assets/iconoRecet.png'
+// llamando el icono de la empresa
+import iconoEmpre from '../../../assets/iconoEmpr.png'
+
+function SideBar(){
 const [isOpen, setIsOpen] = useState(false);
-
 return (
-<div className="flex">
-{/_ Botón hamburguesa (solo visible en móviles) _/}
-<button
-onClick={() => setIsOpen(!isOpen)}
-className=" p-4 z-50 absolute" >
-{isOpen ? <X size={24} /> : <Menu size={24} />}
+<div className=" relative top-0 left-0 right-0 py-3 w-full " style={{backgroundColor:"#1C2937"}}>
+{/_ Boton de menu lateral _/}
+<div className="flex gap-5">
+<button className='ml-4 ' onClick={()=>{setIsOpen(!isOpen)}} >
+<AlignJustify size={34} style={{backgroundColor:"#1C2937"}} className='text-white' />
 </button>
+<img className='w-12 h-10' src={iconoEmpre} alt="" />
+</div>
+{/_ Contenido de menu _/}
+{isOpen && (
+<>
+<div className="bg-gray-600/50 min-h-screen w-full relative top-0 left-0 right-0 backdrop-blur-sm" onClick={()=>{setIsOpen(false)}}></div>
+<div className=" fixed min-h-screen w-80 top-0 left-0" style={{backgroundColor:"#2B445E"}} >
 
-      {/* Sidebar */}
-      <div className={`
-        fixed top-0 left-0 h-full w-64 bg-gray-800 text-white p-6 space-y-6
-        transform transition-transform duration-300 ease-in-out
-        ${isOpen ? "translate-x-0" : "-translate-x-full"}
-        md:relative md:translate-x-0 md:block
-      `}>
-        <h2 className="text-2xl font-bold">Mi Menú</h2>
-        <nav className="space-y-2">
-          <a href="#" className="block p-2 rounded hover:bg-gray-700">Ingrediente</a>
-          <a href="#" className="block p-2 rounded hover:bg-gray-700">SubRecetas</a>
-          <a href="#" className="block p-2 rounded hover:bg-gray-700">Recetas</a>
+                                {/* boton de cerrar */}
+                                <div className=' flex  items-center py-4 hover:opacity-80 transition-colors'style={{backgroundColor:"#1C2937"}} onClick={()=>{setIsOpen(false)}}>
+                                    <button className='ml-4'>
+                                        <X size={50} style={{color:"white"}} />
+                                    </button>
+                                    <h2 className="ml-4 text-white c text-xl text-center" >Apartados</h2>
+                                </div>
 
-        </nav>
-      </div>
+                                {/* <div className='text-center text-white  text-xl hover:bg-blue-400 cursor-pointer py-3 mb-2'>wdwd</div> */}
+                                <div>
+                                    <nav className='flex-col gap-4'>
+                                    <a href="#" className="flex items-center gap-5 py-2 rounded text-xl mt-1 mb-1 text-white text-center  hover:opacity-80 transition-color" style={{backgroundColor:"#1C2937"}}>
+                                        <img  className='w-20 h-20' src={iconoIngrediente} alt="Cargando" />
+                                        <span>Ingredientes</span>
+                                        </a>
+                                    <a href="#" className="flex items-center gap-5 py-2 rounded text-xl mt-1 mb-1  text-white text-center hover:opacity-80 transition-colors" style={{backgroundColor:"#1C2937"}}>
+                                        <img className='w-20 h-20' src={iconoSubrec} alt="Cargando..." />
+                                        <span>SubRecetas</span>
+                                        </a>
+                                    <a href="#" className="flex items-center gap-5 py-2 rounded text-xl mt-1 mb-1 text-white text-center  hover:opacity-80 transition-colors" style={{backgroundColor:"#1C2937"}}>
+                                        <img className='w-20 h-20' src={iconoRec} alt="Cargando..." />
+                                        <span>Recetas</span>
+                                        </a>
+                                </nav>
+                                </div>
 
-      {/* Fondo oscuro al abrir el menú en móviles */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black opacity-50 z-40 "
-          onClick={() => setIsOpen(false)}
-        ></div>
-      )}
-    </div>
+                        </div>
+                </>
+            )}
 
-);
+            {/* Esp */}
+
+        </div>
+
+
+    )
+
 }
+export default SideBar
