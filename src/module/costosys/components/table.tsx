@@ -8,39 +8,46 @@ function InheritedTable({children}:InheritedTableProps){
     return(
         <>
             {/* Apartados de los botones */}
+         
             <main className=" p-2">
                 {children}
             </main>
-            <table className="w-full border border-white text-white">
-                <thead id="tableIngredien">
-                    <tr className="border-b border-white">
-                    <th className="px-4 py-2 border border-white">Columna 1</th>
-                    <th className="px-4 py-2 border border-white">Columna 2</th>
-                    <th className="px-4 py-2 border border-white">Columna 3</th>
-                    <th className="px-4 py-2 border border-white">Columna 4</th>
-                    <th className="px-4 py-2 border border-white">Columna 5</th>
-                    <th className="px-4 py-2 border border-white">Columna 6</th>
+            <div className="overflow-x-auto rounded-lg shadow-lg">
+                <table className="min-w-full table-auto text-sm text-left text-gray-300 bg-[#1E2738]">
+                    <thead className="bg-[#2B3A4F] text-xs uppercase tracking-wider text-gray-400">
+                    <tr>
+                        <th className="px-4 py-3">Nombre</th>
+                        <th className="px-4 py-3">Unidad</th>
+                        <th className="px-4 py-3">Marca</th>
+                        <th className="px-4 py-3">Contenido neto</th>
+                        <th className="px-4 py-3">Precio</th>
+                        <th className="px-4 py-3">Precio unitario</th>
+                        <th className="px-4 py-3">Descripcion</th>
+                        
                     </tr>
-                </thead>
-                <tbody>
-                    {[...Array(8)].map((_, i) => (
-                    <tr
-                        key={i}
-                        style={{
-                        backgroundColor: i % 2 === 0 ? '#1C2937' : '#1F2E3F',
-                        }}
-                        className="border border-white"
-                    >
-                        <td className="px-4 py-2 border border-white">Fila {i + 1} - Col 1</td>
-                        <td className="px-4 py-2 border border-white">Fila {i + 1} - Col 2</td>
-                        <td className="px-4 py-2 border border-white">Fila {i + 1} - Col 3</td>
-                        <td className="px-4 py-2 border border-white">Fila {i + 1} - Col 4</td>
-                        <td className="px-4 py-2 border border-white">Fila {i + 1} - Col 5</td>
-                        <td className="px-4 py-2 border border-white">Fila {i + 1} - Col 6</td>
-                    </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody className="divide-y divide-[#2B3A4F]">
+                        <tr className="hover:bg-[#273044]">
+                            <td className="px-4 py-3">Ejempplo</td>
+                            <td className="px-4 py-3">Ejemplo</td>
+                            {/* <td className="px-4 py-3">
+                            <div>
+                                <div className="text-white font-medium">Torneo de tennis</div>
+                                <div className="text-gray-400 text-sm">Sergio</div>
+                            </div>
+                            </td> */}
+                            {/*  text-gray-500 */}
+                            <td className="px-4 py-3 text-center">Ejemp</td>
+                            <td className="px-4 py-3 text-center ">Ejemplo</td>
+                            <td className="px-4 py-3 text-center">Ejemplo</td>
+                            <td className="px-4 py-3">Ejemplo</td>
+                            <td className="px-4 py-3">Ejemplo</td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </>
     )
 }

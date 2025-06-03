@@ -1,6 +1,7 @@
 import { AlignJustify } from 'lucide-react';
 import { X } from 'lucide-react';
 import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 // llamando los iconos de la menu lateral
 import iconoIngrediente from '../../../assets/iconoIngredie.png'
@@ -19,21 +20,20 @@ interface SideBarProps {
 function SideBar({children}:SideBarProps){
       const [isOpen, setIsOpen] = useState(false);
     return (
-        <div className=" relative min-h-screen " style={{backgroundColor:"#1C2937"}}>
+        <div className=" fixed right-0 left-0 min-h-screen  " style={{backgroundColor:"#111827"}}>
             {/* Boton de menu lateral  */}
-            <div className="flex gap-5 py-3 w-full items-center">
+            <div className="flex gap-5 py-3 w-full items-center" style={{backgroundColor:"#1E2837 "}}>
                 <button className='ml-4 ' onClick={()=>{setIsOpen(!isOpen)}} >
-                   <AlignJustify size={34} style={{backgroundColor:"#1C2937"}} className='text-white'  />
+                   <AlignJustify size={34} style={{backgroundColor:"#1C2937"}} className='text-white active:opacity-80'  />
                 </button>
-                <img className='w-12 h-10' src={iconoEmpre} alt="" />
+                <img className='w-12 h-10 active:opacity-80' src={iconoEmpre} alt="" />
             </div>
             {/* Contenido de menu */}
             {isOpen && (
                 <>
-                    <div 
-                    className="fixed inset-0 bg-gray-600/50 z-10" onClick={()=>{setIsOpen(false)}}
+                    <div className="fixed inset-0 bg-gray-600/50 z-10" onClick={()=>{setIsOpen(false)}}
                     ></div>
-                        <div className=" fixed top-0 left-0  min-h-screen size-70 z-40" style={{backgroundColor:"#2B445E"}} >
+                        <div className=" fixed top-0 left-0  min-h-screen size-70 z-40" style={{backgroundColor:"#111827"}} >
                            
                                 {/* boton de cerrar */}
                                 <div className=' flex  items-center py-4 hover:opacity-80 transition-colors'style={{backgroundColor:"#1C2937"}} onClick={()=>{setIsOpen(false)}}>
@@ -43,9 +43,7 @@ function SideBar({children}:SideBarProps){
                                     <h2 className="ml-4 text-white c text-xl text-center" >Apartados</h2>
                                 </div>
                                 
-                                {/* <div className='text-center text-white  text-xl hover:bg-blue-400 cursor-pointer py-3 mb-2'>wdwd</div> */}
-                                <div>
-                                    <nav className='flex-col gap-4 '>
+                                <nav className='flex-col gap-4 '>
                                     <a href="#" className="flex items-center gap-5 py-2 rounded text-xl mt-1 mb-1 text-white text-center  hover:opacity-80 transition-color" style={{backgroundColor:"#1C2937"}}>
                                         <img  className='w-20 h-20' src={iconoIngrediente} alt="Cargando" />
                                         <span>Ingredientes</span>
@@ -59,19 +57,20 @@ function SideBar({children}:SideBarProps){
                                         <span>Recetas</span>
                                         </a>
                                 </nav>
-                                </div>
+                                
                             
                         </div>
                        
                 </>
             )}
-
             {/* Espacio para  contenido hijo */}
             <main className="relative left-0 top-10 right-0">
                 {children}
             </main>
            
+           
         </div>
+    
         
 
     )
