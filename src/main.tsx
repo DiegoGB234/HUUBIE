@@ -4,13 +4,12 @@ import './index.css'
 // import App from './App.tsx'
 import { BrowserRouter } from 'react-router-dom'
 import Ingredients from './module/costosys/layouts/Ingredients.tsx'
-
+import Categorias from './module/costosys/layouts/Categorias.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-      <Ingredients/>
-      
+      <Categorias />
     </BrowserRouter>
   </StrictMode>
 )
