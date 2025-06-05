@@ -1,7 +1,7 @@
 import { AlignJustify } from 'lucide-react';
 import { X } from 'lucide-react';
 import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 // llamando los iconos de la menu lateral
 import iconoIngrediente from '../../../assets/iconoIngredie.png'
@@ -44,18 +44,18 @@ function SideBar({children}:SideBarProps){
                                 </div>
                                 
                                 <nav className='flex-col gap-4 '>
-                                    <a href="#" className="flex items-center gap-5 py-2 rounded text-xl mt-1 mb-1 text-white text-center  hover:opacity-80 transition-color" style={{backgroundColor:"#1C2937"}}>
-                                        <img  className='w-20 h-20' src={iconoIngrediente} alt="Cargando" />
+                                    <Link to="/ingredients" className="flex items-center gap-5 py-2 rounded text-xl mt-1 mb-1 text-white text-center hover:opacity-80 transition-color" style={{backgroundColor:"#1C2937"}}>
+                                        <img className='w-20 h-20' src={iconoIngrediente} alt="Cargando" />
                                         <span>Ingredientes</span>
-                                        </a>
-                                    <a href="#" className="flex items-center gap-5 py-2 rounded text-xl mt-1 mb-1  text-white text-center hover:opacity-80 transition-colors" style={{backgroundColor:"#1C2937"}}>
+                                    </Link>
+                                    <Link to="subRecetas" className="flex items-center gap-5 py-2 rounded text-xl mt-1 mb-1 text-white text-center hover:opacity-80 transition-colors" style={{backgroundColor:"#1C2937"}}>
                                         <img className='w-20 h-20' src={iconoSubrec} alt="Cargando..." />
                                         <span>SubRecetas</span>
-                                        </a>
-                                    <a href="#" className="flex items-center gap-5 py-2 rounded text-xl mt-1 mb-1 text-white text-center  hover:opacity-80 transition-colors" style={{backgroundColor:"#1C2937"}}>
-                                        <img className='w-20 h-20' src={iconoRec} alt="Cargando..." /> 
+                                    </Link>
+                                    <Link to="recetas" className="flex items-center gap-5 py-2 rounded text-xl mt-1 mb-1 text-white text-center hover:opacity-80 transition-colors" style={{backgroundColor:"#1C2937"}}>
+                                        <img className='w-20 h-20' src={iconoRec} alt="Cargando..." />
                                         <span>Recetas</span>
-                                        </a>
+                                    </Link>
                                 </nav>
                                 
                             

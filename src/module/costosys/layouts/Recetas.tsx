@@ -1,12 +1,12 @@
 import SideBar from "../components/SideBar"
 
- function recetas(){
+ function Recetas(){
     return (
         <>
             <SideBar>
-                <div>Recetas</div>
-            </SideBar>
+                <div className="text-white text-4xl "> Recetas</div>
+             </SideBar>
         </>
     )
 }
-export default recetas
+export default Recetas

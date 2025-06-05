@@ -44,6 +44,23 @@ function InheritedTable({children}:InheritedTableProps){
                             <td className="px-4 py-3">Ejemplo</td>
                             
                         </tr>
+                        <tr className="hover:bg-[#273044]">
+                            <td className="px-4 py-3">Ejempplo</td>
+                            <td className="px-4 py-3">Ejemplo</td>
+                            {/* <td className="px-4 py-3">
+                            <div>
+                                <div className="text-white font-medium">Torneo de tennis</div>
+                                <div className="text-gray-400 text-sm">Sergio</div>
+                            </div>
+                            </td> */}
+                            {/*  text-gray-500 */}
+                            <td className="px-4 py-3 text-center">Ejemp</td>
+                            <td className="px-4 py-3 text-center ">Ejemplo</td>
+                            <td className="px-4 py-3 text-center">Ejemplo</td>
+                            <td className="px-4 py-3">Ejemplo</td>
+                            <td className="px-4 py-3">Ejemplo</td>
+                            
+                        </tr>
                     </tbody>
                 </table>
             </div>
