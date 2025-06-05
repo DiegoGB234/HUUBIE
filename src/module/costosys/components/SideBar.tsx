@@ -9,13 +9,14 @@ import iconoSubrec from '../../../assets/iconoSubRecet.png'
 import iconoRec from '../../../assets/iconoRecet.png'
 // llamando el icono de la empresa 
 import iconoEmpre from '../../../assets/iconoEmpr.png'
+// llamando el icono de categorias
+import iconoCategorias from '../../../assets/IconoCategorias.png'
 
 import type { ReactNode } from "react";
 
 interface SideBarProps {
   children: ReactNode;
 }
-
 
 function SideBar({children}:SideBarProps){
       const [isOpen, setIsOpen] = useState(false);
@@ -48,17 +49,22 @@ function SideBar({children}:SideBarProps){
                                         <img className='w-20 h-20' src={iconoIngrediente} alt="Cargando" />
                                         <span>Ingredientes</span>
                                     </Link>
-                                    <Link to="subRecetas" className="flex items-center gap-5 py-2 rounded text-xl mt-1 mb-1 text-white text-center hover:opacity-80 transition-colors" style={{backgroundColor:"#1C2937"}}>
+                                    <Link to="/subRecetas" className="flex items-center gap-5 py-2 rounded text-xl mt-1 mb-1 text-white text-center hover:opacity-80 transition-colors" style={{backgroundColor:"#1C2937"}}>
                                         <img className='w-20 h-20' src={iconoSubrec} alt="Cargando..." />
                                         <span>SubRecetas</span>
                                     </Link>
-                                    <Link to="recetas" className="flex items-center gap-5 py-2 rounded text-xl mt-1 mb-1 text-white text-center hover:opacity-80 transition-colors" style={{backgroundColor:"#1C2937"}}>
+                                    <Link to="/recetas" className="flex items-center gap-5 py-2 rounded text-xl mt-1 mb-1 text-white text-center hover:opacity-80 transition-colors" style={{backgroundColor:"#1C2937"}}>
                                         <img className='w-20 h-20' src={iconoRec} alt="Cargando..." />
                                         <span>Recetas</span>
                                     </Link>
+                                      <Link to="/categorias" className="flex items-center gap-5 py-2 rounded text-xl mt-1 mb-1 text-white text-center hover:opacity-80 transition-colors" style={{backgroundColor:"#1C2937"}}>
+                                        <img className='w-20 h-20' src={iconoCategorias} alt="Cargando..." />
+                                        <span>Categorias</span>
+                                    </Link>
+                                  
                                 </nav>
                                 
-                            
+
                         </div>
                        
                 </>
