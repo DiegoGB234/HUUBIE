@@ -1,6 +1,6 @@
 import { X } from 'lucide-react';
 import type React from 'react';
-import type { ReactNode, SetStateAction } from 'react';
+
 
 interface props{
     isOpen : boolean
