@@ -1,7 +1,6 @@
 import SideBar from "../components/SideBar.tsx"
 import FormEre from "../components/form.tsx";
 import InheritedTable from "../components/table.tsx"
-
 import { useState } from "react";
 // icono
 import { Search } from 'lucide-react';
@@ -40,6 +39,16 @@ function Ingredientes(){
             description:'Es una pera, que es una fruta'
         },
     ]   
+    // Propiedades de form
+      const formProperties ={
+        name: '',
+        unit: '',
+        provider: '',
+        netContent: '',
+        price: '',
+        pricePerUnit: ''
+      }  
+       
     return (
       
         <SideBar>
@@ -51,13 +60,19 @@ function Ingredientes(){
                 </label>
 
                 <div className="flex items-center gap-2">
-                <input
-                    id="buscar-ingredientes"
-                    type="text"
-                    className=" bg-white rounded px-3 py-2"
-                    placeholder="Escribe aquí..."
-                />
-                <Search size={32} className="text-white active:opacity-80 transition-opacity duration-200" />
+                    <div className="relative">
+                        <input
+                            id="subtecetas"
+                            type="text"
+                            className="bg-white rounded pl-10 pr-3 py-2 w-full"
+                            placeholder="Escribe aquí..."
+                        />
+                        <Search
+                            size={20}
+                            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
+                        />
+                    </div>
+                    
                 {/* Este boton solo habre una ventana */}
                 <button
                     onClick={() => setIsOpen(true)}
@@ -69,7 +84,7 @@ function Ingredientes(){
                 </div>
             </div>
             
-            {isOpen && <FormEre isOpen={isOpen} setIsOpen={setIsOpen} /> }
+            {isOpen && <FormEre isOpen={isOpen} setIsOpen={setIsOpen} formProperties={formProperties} /> }
             
            </InheritedTable>
         </SideBar>
