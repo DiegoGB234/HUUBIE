@@ -32,6 +32,7 @@ function SideBar({children}:SideBarProps){
             {/* Contenido de menu */}
             {isOpen && (
                 <>
+                    {/* Fondo trasparente */}
                     <div className="fixed inset-0 bg-gray-600/50 z-10" onClick={()=>{setIsOpen(false)}}
                     ></div>
                         <div className=" fixed top-0 left-0  min-h-screen size-70 z-40" style={{backgroundColor:"#111827"}} >

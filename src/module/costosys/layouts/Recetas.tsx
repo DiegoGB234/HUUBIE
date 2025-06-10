@@ -6,8 +6,9 @@ import { useState } from "react";
 import { Search } from 'lucide-react';
 import icononoPdf from '../../../assets/iconoPdf.png'
  function Recetas(){
-         const [isOpen, setIsOpen] = useState(false);
-    // los valores que va tener en la tabla  de  recetas
+    const [isOpen, setIsOpen] = useState(false);
+     const title='Agregar Receta'
+    // los valores que va tener en la tabla  de  recetas pero tambien en el form
       const valuesTable = {
         recipe:'Receta',
         classification:'Clasificacion',
@@ -38,15 +39,7 @@ import icononoPdf from '../../../assets/iconoPdf.png'
             mc:'--'
         },
     ]   
-     // Propiedades de form
-      const formProperties ={
-        name: '',
-        unit: '',
-        provider: '',
-        netContent: '',
-        price: '',
-        pricePerUnit: ''
-      }  
+
     return (
         <>
             <SideBar>
@@ -99,7 +92,7 @@ import icononoPdf from '../../../assets/iconoPdf.png'
                             </div>
                     </div>
                     
-                    {isOpen && <FormEre isOpen={isOpen} setIsOpen={setIsOpen} formProperties={formProperties} /> }
+                    {isOpen && <FormEre isOpen={isOpen} setIsOpen={setIsOpen} formProperties={valuesTable} title={title} /> }
                     
             </InheritedTable>
           </SideBar>

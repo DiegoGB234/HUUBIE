@@ -6,12 +6,13 @@ import { useState } from "react";
 import { Search } from 'lucide-react';
 function Ingredientes(){
     const [isOpen, setIsOpen] = useState(false);
+     const title='Agregar Ingrediente'
     // titulos de la tabla de la tabla de ingredientes
-    // Los titulos los dejaremos como
+    // Los titulos los dejaremos , pero tambien serviran como para metros para el form
     const valuesTable = {
-        name:'nombre',
-        unit:'unidad',
-        brand:'marca',
+        name:'Nombre',
+        unit:'Unidad',
+        brand:'Marca',
         netContent:'Contenido neto',
         price:'Precio',
         unitPrice:'Precio Unitario',
@@ -39,15 +40,7 @@ function Ingredientes(){
             description:'Es una pera, que es una fruta'
         },
     ]   
-    // Propiedades de form
-      const formProperties ={
-        name: '',
-        unit: '',
-        provider: '',
-        netContent: '',
-        price: '',
-        pricePerUnit: ''
-      }  
+
        
     return (
       
@@ -84,7 +77,7 @@ function Ingredientes(){
                 </div>
             </div>
             
-            {isOpen && <FormEre isOpen={isOpen} setIsOpen={setIsOpen} formProperties={formProperties} /> }
+            {isOpen && <FormEre isOpen={isOpen} setIsOpen={setIsOpen} formProperties={valuesTable} title={title} /> }
             
            </InheritedTable>
         </SideBar>

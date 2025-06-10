@@ -7,12 +7,12 @@ import { Search } from 'lucide-react';
 import icononoPdf from '../../../assets/iconoPdf.png'
 
  function SubRecetas(){
-     const [isOpen, setIsOpen] = useState(false);
-
-    // los valores que va tener en la tabla  de sub recetas
+    const [isOpen, setIsOpen] = useState(false);
+    const title='Agregar SubReceta'
+    // los valores que va tener en la tabla  de sub recetas pero tambien en el formulario
       const valuesTable = {
         subRecipes:'SubReceta',
-        classification:'Clasificacion',
+        classification:'Categoria',
         total:'Total',
         performance:'Rendimiento',
         cost:'Costo',
@@ -44,16 +44,7 @@ import icononoPdf from '../../../assets/iconoPdf.png'
             }
         ]   
 
-      // Propiedades de form
-      const formProperties ={
-        name: '',
-        unit: '',
-        provider: '',
-        netContent: '',
-        price: '',
-        pricePerUnit: ''
-      }  
-
+    
     return(
         <SideBar>
              <InheritedTable tableContent={contenTable} tableProperties={valuesTable}>
@@ -105,7 +96,7 @@ import icononoPdf from '../../../assets/iconoPdf.png'
                         </div>
                 </div>
                 
-                {isOpen && <FormEre isOpen={isOpen} setIsOpen={setIsOpen} formProperties={formProperties} /> }
+                {isOpen && <FormEre isOpen={isOpen} setIsOpen={setIsOpen} formProperties={valuesTable} title={title}/> }
                 
            </InheritedTable>
         </SideBar>
