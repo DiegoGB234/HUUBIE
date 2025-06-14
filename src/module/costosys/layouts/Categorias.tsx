@@ -1,139 +1,113 @@
-import SideBar from "../components/SideBar.tsx";
-import { useState } from "react";
-import { PlusCircle, Edit, Trash2, Search } from "lucide-react";
-
-const initialCategorias = [
-  "BIZCOCHOS",
-  "BOCADILLOS",
-  "CAFE",
-  "DESECHABLES",
-  "FRANCES",
-  "PASTELERIA",
-  "REFRESCOS",
-  "TORTILLAS"
-];
+import { useState } from 'react';
+import SideBar from '../components/SideBar';
+import { Pencil, Trash2, Plus, Check } from 'lucide-react';
 
 function Categorias() {
-  const [categorias, setCategorias] = useState(initialCategorias);
-  const [input, setInput] = useState("");
-  const [editIndex, setEditIndex] = useState<number | null>(null);
-  const [search, setSearch] = useState("");
+  const [categorias, setCategorias] = useState<string[]>([]);
+  const [nuevaCategoria, setNuevaCategoria] = useState('');
+  const [editandoIndex, setEditandoIndex] = useState<number | null>(null);
+  const [categoriaEditada, setCategoriaEditada] = useState('');
 
-  const handleAgregar = () => {
-    if (input.trim() && !categorias.includes(input.trim().toUpperCase())) {
-      setCategorias([...categorias, input.trim().toUpperCase()]);
-      setInput("");
+  const handleAdd = () => {
+    if (nuevaCategoria.trim()) {
+      setCategorias([...categorias, nuevaCategoria.trim()]);
+      setNuevaCategoria('');
     }
   };
 
-  const handleModificar = () => {
-    if (
-      editIndex !== null &&
-      input.trim() &&
-      !categorias.includes(input.trim().toUpperCase())
-    ) {
-      const nuevas = [...categorias];
-      nuevas[editIndex] = input.trim().toUpperCase();
-      setCategorias(nuevas);
-      setEditIndex(null);
-      setInput("");
+  const handleDelete = (index: number) => {
+    setCategorias(categorias.filter((_, i) => i !== index));
+  };
+
+  const handleEdit = (index: number) => {
+    setEditandoIndex(index);
+    setCategoriaEditada(categorias[index]);
+  };
+
+  const handleSaveEdit = () => {
+    if (editandoIndex !== null && categoriaEditada.trim()) {
+      const actualizadas = [...categorias];
+      actualizadas[editandoIndex] = categoriaEditada.trim();
+      setCategorias(actualizadas);
+      setEditandoIndex(null);
+      setCategoriaEditada('');
     }
   };
-
-  const handleEliminar = () => {
-    if (editIndex !== null) {
-      setCategorias(categorias.filter((_, idx) => idx !== editIndex));
-      setEditIndex(null);
-      setInput("");
-    }
-  };
-
-  const handleSelect = (idx: number) => {
-    setEditIndex(idx);
-    setInput(categorias[idx]);
-  };
-
-  const filteredCategorias = categorias.filter(cat =>
-    cat.toLowerCase().includes(search.toLowerCase())
-  );
 
   return (
     <SideBar>
-      <div className="p-4 md:p-8 rounded-lg shadow-lg w-full max-w-full md:max-w-2xl mx-auto mt-4 md:mt-10" style={{backgroundColor:"#1C2937"}}>
-        <h2 className="text-2xl font-bold mb-4 text-white text-center md:text-left">Ingresa la nueva categoría</h2>
-        <div className="flex flex-col gap-2 mb-4">
-          <label className="text-white px-2" htmlFor="buscar-categorias">
-            Buscar categorías
-          </label>
-          <div className="flex flex-col sm:flex-row items-stretch gap-2">
-            <div className="relative flex-1">
-              <input
-                id="buscar-categorias"
-                type="text"
-                className="bg-white rounded pl-10 pr-3 py-2 w-full"
-                placeholder="Escribe aquí..."
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-              />
-              <Search size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600" />
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col md:flex-row gap-2 md:gap-4 mb-6">
+      <div className="p-8 max-w-5xl mx-auto">
+        <h1 className="text-4xl font-bold text-white mb-8 animate-slideInLeft">📂 Categorías</h1>
+
+        {/* Input + botón añadir */}
+        <div className="flex items-center gap-4 mb-8">
           <input
-            className="w-full md:w-auto flex-1 p-2 rounded text-lg"
-            style={{backgroundColor:"#111827", color:"white", border:"1px solid #374151"}}
             type="text"
-            value={input}
-            onChange={e => setInput(e.target.value)}
-            placeholder="Nueva categoría"
+            value={nuevaCategoria}
+            onChange={(e) => setNuevaCategoria(e.target.value)}
+            placeholder="Escribe una nueva categoría..."
+            className="p-3 rounded-lg bg-gray-800 text-white w-full outline-none border border-gray-700 focus:border-blue-500 transition"
           />
-          <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
-            <button
-              className="flex items-center justify-center gap-2 px-4 py-2 rounded text-white font-semibold w-full sm:w-auto"
-              style={{backgroundColor:"#2563EB"}}
-              onClick={handleAgregar}
-              disabled={editIndex !== null}
-            >
-              <PlusCircle /> Agregar
-            </button>
-            <button
-              className="flex items-center justify-center gap-2 px-4 py-2 rounded text-white font-semibold w-full sm:w-auto"
-              style={{backgroundColor:"#2563EB"}}
-              onClick={handleModificar}
-              disabled={editIndex === null}
-            >
-              <Edit /> Modificar
-            </button>
-            <button
-              className="flex items-center justify-center gap-2 px-4 py-2 rounded text-white font-semibold w-full sm:w-auto"
-              style={{backgroundColor:"#2563EB"}}
-              onClick={handleEliminar}
-              disabled={editIndex === null}
-            >
-              <Trash2 /> Eliminar
-            </button>
-          </div>
+          <button
+            onClick={handleAdd}
+            className="p-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-white flex items-center gap-1 transition active:scale-95"
+          >
+            <Plus size={18} />
+            Añadir
+          </button>
         </div>
-        <div className="bg-[#111827] rounded p-2 md:p-4 overflow-x-auto">
-          <div className="flex flex-col sm:flex-row justify-between mb-2 gap-2">
-            <span className="text-white font-semibold">Clasificación</span>
-            <span className="text-gray-300">No. Categorías: {filteredCategorias.length}</span>
-          </div>
-          {/* Scroll vertical para la lista de categorías */}
-          <div className="max-h-64 overflow-y-auto">
-            <ul className="divide-y divide-gray-700">
-              {filteredCategorias.map((cat, idx) => (
-                <li
-                  key={cat}
-                  className={`py-2 px-2 cursor-pointer rounded ${editIndex !== null && categorias[editIndex] === cat ? "bg-[#374151] text-green-400" : "text-white"} hover:bg-[#374151]`}
-                  onClick={() => handleSelect(categorias.indexOf(cat))}
-                >
-                  {cat}
-                </li>
-              ))}
-            </ul>
-          </div>
+
+        {/* Lista de categorías */}
+        <div className="h-[500px] overflow-y-auto pr-2 space-y-4 scrollbar-thin scrollbar-thumb-blue-600 scrollbar-track-gray-800">
+          {categorias.length === 0 ? (
+            <p className="text-gray-400 text-center">Aún no hay categorías agregadas.</p>
+          ) : (
+            categorias.map((cat, index) => (
+              <div
+                key={index}
+                className="flex items-center justify-between bg-gray-900 px-5 py-4 rounded-xl shadow-md hover:shadow-blue-600/20 transition-all border border-gray-700 animate-slideInLeft"
+              >
+                {/* Nombre o campo editable */}
+                {editandoIndex === index ? (
+                  <input
+                    value={categoriaEditada}
+                    onChange={(e) => setCategoriaEditada(e.target.value)}
+                    className="bg-gray-800 p-2 rounded-md text-white border border-gray-700 focus:outline-none focus:ring focus:ring-blue-500 w-full mr-4"
+                  />
+                ) : (
+                  <span className="text-lg text-white font-medium">{cat}</span>
+                )}
+
+                {/* Botones */}
+                <div className="flex gap-2 ml-4">
+                  {editandoIndex === index ? (
+                    <button
+                      onClick={handleSaveEdit}
+                      className="p-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-white transition active:scale-95"
+                      title="Guardar"
+                    >
+                      <Check size={18} />
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => handleEdit(index)}
+                      className="p-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-white transition active:scale-95"
+                      title="Editar"
+                    >
+                      <Pencil size={18} />
+                    </button>
+                  )}
+                  <button
+                    onClick={() => handleDelete(index)}
+                    className="p-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-white transition active:scale-95"
+                    title="Eliminar"
+                  >
+                    <Trash2 size={18} />
+                  </button>
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </SideBar>
